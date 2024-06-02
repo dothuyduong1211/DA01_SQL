@@ -1,11 +1,7 @@
 ---Bài tập 1---
 SELECT 
-SUM(CASE
-    when device_type = 'laptop' then 1 else 0
-end) as laptop_reviews,
-SUM(CASE
-    when device_type in ('tablet','phone') then 1 else 0
-end) as mobile_views
+SUM(CASE when device_type = 'laptop' then 1 else 0 end) as laptop_reviews,
+SUM(CASE when device_type in ('tablet','phone') then 1 else 0 end) as mobile_views
 FROM viewership
 
 ---Bài tập 2---
@@ -18,9 +14,7 @@ from Triangle
 
 ---Bài tập 3---
 select 
-round(cast(sum(case when call_category is NULL or 
-call_category = 'n/a' then 1 else 0 end) as decimal)
-/count(*)*100,1) as uncategorised_call_pct
+round(cast(sum(case when call_category is NULL or call_category = 'n/a' then 1 else 0 end) as decimal) /count(*)*100,1) as uncategorised_call_pct
 from callers
 
 ---Bài tập 4---
