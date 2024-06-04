@@ -49,7 +49,7 @@ join payment as d on c.customer_id = d.customer_id
 group by a.city
 order by sum(d.amount) DESC
 
----Q8: Đề bài ghi theo format “city, country" và hỏi thành phố nào doanh thu nào cao nhất nhưng mà Answer lại là thấp nhất và theo  format: “country, city"
+---Q8: Đề bài ghi theo format “city, country" và hỏi thành phố nào doanh thu nào cao nhất nhưng mà Answer lại là thấp nhất và theo format: “country, city"
 select a.city || ', ' || e.country as dn_tp , sum(d.amount) as Doanh_thu
 from city as a
 join address as b on a.city_id = b.city_id
