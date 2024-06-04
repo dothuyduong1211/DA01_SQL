@@ -1,3 +1,4 @@
+Phần luyện tập 
 ---Bài tập 1---
 Select b.continent, floor(avg(a.population))
 From city as a
