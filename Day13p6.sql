@@ -1,11 +1,10 @@
 --- Bài tập 1 ---
-SELECT COUNT(distinct company_id) AS duplicate_companies
-FROM (
-  SELECT company_id, title, description, 
-    COUNT(job_id) as job_count
-  FROM job_listings
-  GROUP BY company_id, title, description ) as job_listings_1
-WHERE job_count > 1;
+select count(distinct company_id) as duplicate_companies
+from 
+(select company_id, title, description, count(job_id) as job_count
+from job_listings
+group by company_id, title, description ) as job_listings_1
+where job_count > 1
 
 --- Bài tập 2 --- phải tra thêm rank + PARTITION BY
 with cte1 as 
@@ -37,21 +36,19 @@ where page_id not in
 
 --- Bài tập 5 ---
 With June as
-(SELECT user_id
-FROM user_actions
-WHERE EXTRACT(month from event_date) = 6),
+(select user_id
+from user_actions
+where extract(month from event_date) = 6),
 
 July as
-(SELECT user_id, EXTRACT(month from event_date) as month
-FROM user_actions
-WHERE EXTRACT(month from event_date) = 7)
+(select user_id, extract(month from event_date) as month
+from user_actions
+where extract(month from event_date) = 7)
 
-SELECT month,
-    COUNT(DISTINCT July.user_id) AS monthly_active_users
-FROM July
-JOIN June
-ON june.user_id = july.user_id
-GROUP BY month
+select month, count(distinct July.user_id) as monthly_active_users
+from July
+join June on june.user_id = july.user_id
+group by month
 
 --- Bài tập 6 ---
 select left(trans_date,7) as month , country,
@@ -84,13 +81,13 @@ where salary < 30000
 and manager_id not in (select employee_id from Employees)
 
 --- Bài tập 10 --- Trùng link bài 1
-SELECT COUNT(distinct company_id) AS duplicate_companies
-FROM (SELECT company_id, title, description, 
-    COUNT(job_id) AS job_count
-  FROM job_listings
-  GROUP BY company_id, title, description ) as job_listings_1
-WHERE job_count > 1
-
+select count(distinct company_id) as duplicate_companies
+from 
+(select company_id, title, description, count(job_id) as job_count
+from job_listings
+group by company_id, title, description ) as job_listings_1
+where job_count > 1
+  
 --- Bài tập 11 ---
 with rating_count as 
 (select a.name
