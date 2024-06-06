@@ -10,7 +10,7 @@ where job_count > 1
 with cte1 as 
 (select category, product,
 sum(spend) as total_spend,
-rank() over (partition by category order by sum(spend) DESC) as product_ranking --- Xếp hạng rank (order by cl1,cl2,...) + PARTITION BY: một nhóm các hàng
+rank() over (partition by category order by sum(spend) DESC) as product_ranking --- Xếp hạng RANK() OVER (ORDER BY column1, column2, ...) + PARTITION BY: dùng để nhóm các hàng có liên quan đến nhau thành 1 partition để thực hiện việc tính toán
 from product_spend
 where extract(year from transaction_date) = 2022
 group by category, product)
