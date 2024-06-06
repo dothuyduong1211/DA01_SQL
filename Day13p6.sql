@@ -6,7 +6,7 @@ from job_listings
 group by company_id, title, description ) as job_listings_1
 where job_count > 1
 
---- Bài tập 2 --- phải tra thêm rank + PARTITION BY
+--- Bài tập 2 ---
 with cte1 as 
 (select category, product,
 sum(spend) as total_spend,
